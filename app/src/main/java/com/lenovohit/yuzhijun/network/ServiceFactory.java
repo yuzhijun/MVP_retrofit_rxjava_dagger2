@@ -125,13 +125,6 @@ public class ServiceFactory extends BaseServiceFactory {
         super();
     }
 
-    public void getWeather5(Subscriber<Weather2> subscriber,String IP){
-        Observable<Weather2> observable = apiService.getWeatherResult4(IP)
-                .map(new HttpResultFunc<Weather2>());
-
-        subscribe(observable, subscriber);
-    }
-
     public Subscription getWeather6(Subscriber<Weather2> subscriber,String IP){
         Observable<Weather2> observable = apiService.getWeatherResult4(IP)
                 .map(new HttpResultFunc<Weather2>());

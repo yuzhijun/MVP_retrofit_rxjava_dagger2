@@ -7,6 +7,7 @@ import com.lenovohit.yuzhijun.base.BaseServiceFactory;
 import com.lenovohit.yuzhijun.inject.module.ApiServiceModule;
 import com.lenovohit.yuzhijun.inject.module.AppModule;
 import com.lenovohit.yuzhijun.network.ApiService;
+import com.lenovohit.yuzhijun.ui.presenter.BasePresenter;
 
 import javax.inject.Singleton;
 
@@ -28,4 +29,5 @@ public interface AppComponent {
 
     void inject(BaseApplication app);
     void inject(BaseServiceFactory serviceFactory);
+    void inject(BasePresenter basePresenter);
 }

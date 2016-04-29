@@ -18,8 +18,6 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class BaseActivity extends AppCompatActivity {
     protected CompositeSubscription mCompositeSubscription
             = new CompositeSubscription();
-    @Inject
-    protected ServiceFactory mServiceFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

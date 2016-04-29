@@ -3,6 +3,7 @@ package com.lenovohit.yuzhijun.inject.module;
 import android.app.Activity;
 
 import com.lenovohit.yuzhijun.ui.activity.MainActivity;
+import com.lenovohit.yuzhijun.ui.presenter.MainActivityPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,8 +21,13 @@ public class ActivityModule {
 
     @Provides
     @ActivityScope
-    Activity provideAcitivity(){
+    MainActivity provideAcitivity(){
         return this.activity;
     }
 
+    @Provides
+    @ActivityScope
+    MainActivityPresenter provideMainActivityPresenter(MainActivity activity){
+        return  new MainActivityPresenter(activity);
+    }
 }
