@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import rx.subscriptions.CompositeSubscription;
 
 /**
+ * P层的基类(P层主要用于业务的处理)
  * Created by yuzhijun on 2016/4/29.
  */
 public abstract class BasePresenter implements SubscriberListener{
