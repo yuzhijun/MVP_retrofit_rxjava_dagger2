@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MVP_retrofit_rxjava_dagger2</string>
+    <string name="action_settings">Settings</string>
+</resources>
