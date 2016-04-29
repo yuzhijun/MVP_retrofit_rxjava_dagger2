@@ -23,7 +23,6 @@ import rx.Subscription;
  */
 public class MainActivity extends SimpleActivity{
 
-
     @Bind(R.id.tvShow)
     TextView tvShow;
 
@@ -38,8 +37,8 @@ public class MainActivity extends SimpleActivity{
     @Override
     protected void initView() {
         super.initView();
-        Subscription subscription =  mainActivityPresenter.getWeatherData();
-        mCompositeSubscription.add(subscription);
+
+        getWeatherData();
     }
 
     @Override
@@ -55,10 +54,16 @@ public class MainActivity extends SimpleActivity{
     public void onNext(Object o, int flag) {
         switch (flag) {
             case 1:
-                tvShow.setText("ddddd");
+                Weather2 weather2 = (Weather2)o;
+                tvShow.setText(weather2.getCountry());
                 break;
             default:
                 break;
         }
+    }
+
+    public void getWeatherData(){
+        Subscription subscription =  mainActivityPresenter.getWeatherData();
+        mCompositeSubscription.add(subscription);
     }
 }
