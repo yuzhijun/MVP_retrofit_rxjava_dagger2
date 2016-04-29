@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
  * 子类根据需要进行实现
  * Created by yuzhijun on 2016/4/28.
  */
-public abstract class SimpleActivity extends BaseActivity implements SubscriberListener {
+public abstract class SimpleActivity extends BaseActivity{
 
     @Override
     protected void beforeContentView() {
@@ -36,21 +36,6 @@ public abstract class SimpleActivity extends BaseActivity implements SubscriberL
 
     @Override
     protected void initData() {
-
-    }
-
-    @Override
-    public void onComplete() {
-
-    }
-
-    @Override
-    public void onError(Throwable e) {
-
-    }
-
-    @Override
-    public void preStart() {
 
     }
 }

@@ -22,7 +22,19 @@ public class MainActivityPresenter extends BasePresenter{
     }
 
     public Subscription getWeatherData(){
-        Subscription subscription =  mServiceFactory.getWeather6(new BaseSubscriber<Weather2>(mMainActivity, 1), IP);
+        Subscription subscription =  mServiceFactory.getWeather6(new BaseSubscriber<Weather2>(this, 1), IP);
         return subscription;
+    }
+
+    @Override
+    public void onNext(Object o, int flag) {
+        switch (flag) {
+            case 1:
+                Weather2 weather2 = (Weather2)o;
+                mMainActivity.setTvShow(weather2.getCountry());
+                break;
+            default:
+                break;
+        }
     }
 }

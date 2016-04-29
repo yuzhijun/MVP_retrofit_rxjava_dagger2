@@ -50,16 +50,8 @@ public class MainActivity extends SimpleActivity{
                 .inject(this);
     }
 
-    @Override
-    public void onNext(Object o, int flag) {
-        switch (flag) {
-            case 1:
-                Weather2 weather2 = (Weather2)o;
-                tvShow.setText(weather2.getCountry());
-                break;
-            default:
-                break;
-        }
+    public void setTvShow(String country){
+        tvShow.setText(country);
     }
 
     public void getWeatherData(){
