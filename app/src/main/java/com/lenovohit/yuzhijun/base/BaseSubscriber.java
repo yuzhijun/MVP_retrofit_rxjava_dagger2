@@ -25,7 +25,7 @@ public class BaseSubscriber<T> extends Subscriber<T> {
     @Override
     public void onCompleted() {
 
-        subscriberOnNextListener.onComplete();
+        subscriberOnNextListener.onComplete(flag);
     }
 
     @Override

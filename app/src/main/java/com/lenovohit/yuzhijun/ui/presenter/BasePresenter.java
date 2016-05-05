@@ -31,7 +31,7 @@ public abstract class BasePresenter implements SubscriberListener{
     }
 
     @Override
-    public void onComplete() {
+    public void onComplete(int flag) {
 
     }
 

@@ -3,6 +3,9 @@ package com.lenovohit.yuzhijun.network;
 
 import com.lenovohit.yuzhijun.base.BaseServiceFactory;
 import com.lenovohit.yuzhijun.model.Weather2;
+import com.lenovohit.yuzhijun.model.XMModel;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -10,6 +13,9 @@ import retrofit2.Retrofit;
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.functions.Func2;
 
 /**
  * Created by yuzhijun on 2016/3/30.
@@ -132,4 +138,38 @@ public class ServiceFactory extends BaseServiceFactory {
         return subscribe(observable, subscriber);
     }
 
+
+    public Subscription getXMList(Subscriber<XMModel> subscriber,int pageIndex,int pageSize){
+        final Observable<XMModel> observable = apiService.getXMList(pageIndex,pageSize)
+                .map(new HttpResultFunc<List<XMModel>>())
+                .flatMap(new Func1<List<XMModel>, Observable<XMModel>>() {
+                    @Override
+                    public Observable<XMModel> call(List<XMModel> xmModels) {
+                        return Observable.from(xmModels);
+                    }
+                }).filter(new Func1<XMModel, Boolean>() {
+                    @Override
+                    public Boolean call(XMModel xMModel) {
+                        return xMModel.getID() != 0;
+                    }
+                })
+                .take(3)
+                .toSortedList(new Func2<XMModel, XMModel, Integer>() {
+                    @Override
+                    public Integer call(XMModel xmModel, XMModel xmModel2) {
+                        return xmModel.getTJSJ().compareTo(xmModel2.getTJSJ());
+                    }
+                }).doOnNext(new Action1<List<XMModel>>() {
+                    @Override
+                    public void call(List<XMModel> xmModels) {
+                        //可以做些数据库保存操作等等。。。。
+                    }
+                }).flatMap(new Func1<List<XMModel>, Observable<XMModel>>() {
+                    @Override
+                    public Observable<XMModel> call(List<XMModel> xmModels) {
+                        return Observable.from(xmModels);
+                    }
+                });
+        return subscribe(observable,subscriber);
+    }
 }

@@ -1,6 +1,9 @@
 package com.lenovohit.yuzhijun.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.lenovohit.yuzhijun.R;
@@ -26,6 +29,9 @@ public class MainActivity extends SimpleActivity{
     @Bind(R.id.tvShow)
     TextView tvShow;
 
+    @Bind(R.id.btnSwitch)
+    Button btnSwitch;
+
     @Inject
     MainActivityPresenter mainActivityPresenter;
 
@@ -38,7 +44,20 @@ public class MainActivity extends SimpleActivity{
     protected void initView() {
         super.initView();
 
-        getWeatherData();
+//        getWeatherData();
+        getXMList();
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        btnSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -56,6 +75,11 @@ public class MainActivity extends SimpleActivity{
 
     public void getWeatherData(){
         Subscription subscription =  mainActivityPresenter.getWeatherData();
+        mCompositeSubscription.add(subscription);
+    }
+
+    public void getXMList(){
+        Subscription subscription = mainActivityPresenter.getXMList();
         mCompositeSubscription.add(subscription);
     }
 }

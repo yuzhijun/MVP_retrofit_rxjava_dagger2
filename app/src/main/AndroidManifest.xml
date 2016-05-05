@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.activity.SecondActivity"
+           android:theme="@style/ActivityTheme"></activity>
+
+        <activity android:name=".ui.activity.ThirdActivity"
+            android:theme="@style/ActivityTheme"></activity>
     </application>
 
 </manifest>

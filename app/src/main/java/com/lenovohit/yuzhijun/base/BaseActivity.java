@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.komi.slider.SliderUtils;
 import com.lenovohit.yuzhijun.inject.component.AppComponent;
 import com.lenovohit.yuzhijun.network.ServiceFactory;
 
@@ -25,6 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setupComponent((AppComponent) BaseApplication.get(this).component());
         beforeContentView();
         setContentView(getContentView());
+        SliderUtils.attachActivity(this, null);
         obtainParam(getIntent());
         initView();
         initListener();

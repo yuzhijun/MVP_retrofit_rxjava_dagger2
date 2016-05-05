@@ -11,6 +11,8 @@ public class HttpResult<T> {
 
     private T data;
 
+    private T resultList;
+
     public int getCode() {
         return code;
     }
@@ -25,5 +27,13 @@ public class HttpResult<T> {
 
     public void setData(T data) {
         data = data;
+    }
+
+    public T getResultList() {
+        return resultList;
+    }
+
+    public void setResultList(T resultList) {
+        this.resultList = resultList;
     }
 }

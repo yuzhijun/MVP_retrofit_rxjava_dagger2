@@ -5,7 +5,7 @@ package com.lenovohit.yuzhijun.network;
  */
 public interface SubscriberListener<T>{
     void onNext(T t, int flag);
-    void onComplete();
+    void onComplete(int flag);
     void onError(Throwable e);
     void preStart();
 }
