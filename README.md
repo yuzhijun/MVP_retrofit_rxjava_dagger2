@@ -21,3 +21,9 @@ REFERENCE:
 8.Retrofit2 完全解析 探索与okhttp之间的关系:http://blog.csdn.net/lmj623565791/article/details/51304204
 
 9.Retrofit2.0使用总结:http://www.jianshu.com/p/3e13e5d34531
+
+10.dagger2 让你爱不释手：基础依赖注入框架篇:http://android.jobbole.com/82694/#comment-91844
+
+11.dagger2 让你爱不释手：重点概念讲解、融合篇:http://android.jobbole.com/82704/
+
+12.dagger2 让你爱不释手：终结篇:http://android.jobbole.com/82705/
