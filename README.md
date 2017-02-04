@@ -27,3 +27,9 @@ REFERENCE:
 11.dagger2 让你爱不释手：重点概念讲解、融合篇:http://android.jobbole.com/82704/
 
 12.dagger2 让你爱不释手：终结篇:http://android.jobbole.com/82705/
+
+13.Dagger2 (一) 入坑篇:http://www.cnblogs.com/pedro-neer/p/5303416.html
+
+14.Dagger2 (二) 进阶篇:http://www.cnblogs.com/pedro-neer/p/5307964.html
+
+15.Dagger2 (三) 总结篇:http://www.cnblogs.com/pedro-neer/p/5309841.html
