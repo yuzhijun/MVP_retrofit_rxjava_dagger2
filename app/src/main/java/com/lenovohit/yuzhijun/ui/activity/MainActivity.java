@@ -65,10 +65,12 @@ public class MainActivity extends SimpleActivity{
     }
 
     public void setTvShow(String country){
+        cancelLoading();
         tvShow.setText(country);
     }
 
     public void getWeatherData(){
+        showLoading(R.string.label_being_something);
         Subscription subscription =  mainActivityPresenter.getWeatherData();
         mCompositeSubscription.add(subscription);
     }

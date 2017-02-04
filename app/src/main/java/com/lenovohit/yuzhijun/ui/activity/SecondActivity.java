@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
-import com.komi.slider.SliderUtils;
 import com.lenovohit.yuzhijun.R;
 import com.lenovohit.yuzhijun.inject.component.AppComponent;
 
@@ -25,7 +24,6 @@ public class SecondActivity extends SimpleActivity {
     @Override
     protected void initView() {
         super.initView();
-//        SliderUtils.attachActivity(this, null);
     }
 
     @Override
