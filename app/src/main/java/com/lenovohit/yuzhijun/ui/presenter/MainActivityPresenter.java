@@ -1,12 +1,6 @@
 package com.lenovohit.yuzhijun.ui.presenter;
 
-import android.content.pm.LabeledIntent;
-
-import com.lenovohit.yuzhijun.base.BaseApplication;
 import com.lenovohit.yuzhijun.base.BaseSubscriber;
-import com.lenovohit.yuzhijun.inject.component.AppComponent;
-import com.lenovohit.yuzhijun.inject.component.DaggerActivityComponent;
-import com.lenovohit.yuzhijun.inject.module.ActivityModule;
 import com.lenovohit.yuzhijun.model.Weather2;
 import com.lenovohit.yuzhijun.model.XMModel;
 import com.lenovohit.yuzhijun.ui.activity.MainActivity;
@@ -29,12 +23,12 @@ public class MainActivityPresenter extends BasePresenter{
     }
 
     public Subscription getWeatherData(){
-        Subscription subscription =  mServiceFactory.getWeather6(new BaseSubscriber<Weather2>(this, 1), IP);
+        Subscription subscription =  mServiceFactory.getWeather6(new BaseSubscriber<>(this, 1), IP);
         return subscription;
     }
 
     public Subscription getXMList(){
-        Subscription subscription = mServiceFactory.getXMList(new BaseSubscriber<XMModel>(this,2),0,1);
+        Subscription subscription = mServiceFactory.getXMList(new BaseSubscriber<>(this,2),0,1);
         return  subscription;
     }
 

@@ -4,11 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.komi.slider.SliderUtils;
 import com.lenovohit.yuzhijun.inject.component.AppComponent;
-import com.lenovohit.yuzhijun.network.ServiceFactory;
-
-import javax.inject.Inject;
 
 import rx.subscriptions.CompositeSubscription;
 
@@ -23,10 +19,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupComponent((AppComponent) BaseApplication.get(this).component());
+        setupComponent(BaseApplication.get(this).component());
         beforeContentView();
         setContentView(getContentView());
-        SliderUtils.attachActivity(this, null);
+//        SliderUtils.attachActivity(this, null);
         obtainParam(getIntent());
         initView();
         initListener();

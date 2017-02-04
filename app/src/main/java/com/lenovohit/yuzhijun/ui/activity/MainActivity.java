@@ -1,24 +1,19 @@
 package com.lenovohit.yuzhijun.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.lenovohit.yuzhijun.R;
-import com.lenovohit.yuzhijun.base.BaseSubscriber;
 import com.lenovohit.yuzhijun.inject.component.AppComponent;
 import com.lenovohit.yuzhijun.inject.component.DaggerActivityComponent;
 import com.lenovohit.yuzhijun.inject.module.ActivityModule;
-import com.lenovohit.yuzhijun.model.Weather2;
-import com.lenovohit.yuzhijun.network.SubscriberListener;
 import com.lenovohit.yuzhijun.ui.presenter.MainActivityPresenter;
 
 import javax.inject.Inject;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import rx.Subscription;
 
 /**
@@ -44,8 +39,8 @@ public class MainActivity extends SimpleActivity{
     protected void initView() {
         super.initView();
 
-//        getWeatherData();
-        getXMList();
+        getWeatherData();
+//        getXMList();
     }
 
     @Override

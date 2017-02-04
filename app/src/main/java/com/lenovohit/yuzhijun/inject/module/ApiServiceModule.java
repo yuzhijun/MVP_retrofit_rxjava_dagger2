@@ -8,7 +8,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,14 +21,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class ApiServiceModule {
 
-    private static final String BASE_URL =  "http://demo.xizhang.com/testappwebapi/api/";//"http://ip.taobao.com/";
+    private static final String BASE_URL =  "http://ip.taobao.com/";//"http://demo.xizhang.com/testappwebapi/api/";
     private static final int DEFAULT_TIMEOUT = 5;
+    private Interceptor cacheInterceptor = new OfflineCacheControlInterceptor();
 
     @Provides
     @Singleton
     OkHttpClient provideOkHttpClientBuilder(){
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         OkHttpClient httpClientBuilder = new OkHttpClient();
-        httpClientBuilder.newBuilder().connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        httpClientBuilder.newBuilder()
+                .addInterceptor(interceptor)
+                .addInterceptor(cacheInterceptor)
+                .addNetworkInterceptor(cacheInterceptor)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true);
         return httpClientBuilder;
     }
 
@@ -35,6 +46,7 @@ public class ApiServiceModule {
     Retrofit provideRetrofit(OkHttpClient OkHttpClientBuilder){
         return  new Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .addConverterFactory(StringConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(OkHttpClientBuilder)
