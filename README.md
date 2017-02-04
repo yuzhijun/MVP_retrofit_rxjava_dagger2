@@ -19,3 +19,5 @@ REFERENCE:
 7.Retrofit 2 — How to Upload Files to Server:https://futurestud.io/tutorials/retrofit-2-how-to-upload-files-to-server
 
 8.Retrofit2 完全解析 探索与okhttp之间的关系:http://blog.csdn.net/lmj623565791/article/details/51304204
+
+9.Retrofit2.0使用总结:http://www.jianshu.com/p/3e13e5d34531
