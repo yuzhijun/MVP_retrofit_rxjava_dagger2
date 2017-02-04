@@ -4,6 +4,7 @@ mvp架构（retrofit+rxjava+dagger2）
 这个框架是针对几个新技术构建mvp架构
 
 REFERENCE:
+
 1.给 Android 开发者的 RxJava 详解：http://gank.io/post/560e15be2dca930e00da1083
 
 2.Rxjava + retrofit + dagger2 + mvp搭建Android框架：http://gank.io/post/560e15be2dca930e00da1083
@@ -33,3 +34,35 @@ REFERENCE:
 14.Dagger2 (二) 进阶篇:http://www.cnblogs.com/pedro-neer/p/5307964.html
 
 15.Dagger2 (三) 总结篇:http://www.cnblogs.com/pedro-neer/p/5309841.html
+
+16.ReactiveX中文翻译文档：操作符介绍：https://mcxiaoke.gitbooks.io/rxdocs/content/
+
+大纲之操作符分类
+
+创建操作
+
+Just, From, Repeat(repeatWhen), Create, Defer, Range, Interval, Empty/Never/Throw,Timer
+
+变换操作
+
+Map, FlatMap(concatMap,flatMapIterable), SwitchMap, Buffer, GroupBy, Scan, Window, Cast
+
+过滤操作
+
+Filter(ofType), Take(TakeLast,takeLastBuffer), Skip(SkipLast), Last(lastOrDefault), First(takeFirst,firstOrDefault), ElementAt(elementAtOrDefault), Sample(sample,throttleLast) ThrottleFirst, Distinct(distinctUntilChanged), IgnoreElements
+
+组合操作
+
+StartWith, Merge(mergeDelayError), Zip(zip,zipwith), And/Then/When, CombineLatest, Join(join/groupJoin), Switch(switchOnNext)
+
+错误处理
+
+Catch, Retry 
+
+辅助操作
+
+Materialize/Dematerialize, Timestamp/TimeInterval, ObserveOn/SubscribeOn/Subscribe, Delay(delay,delaySubscription), Using, Single, Timeout, Do, To, Serialize, cache(replay)
+
+17.可能是东半球最全的RxJava使用场景小结：http://blog.csdn.net/theone10211024/article/details/50435325
+
+18.RxJava使用场景小结：http://blog.csdn.net/lzyzsd/article/details/50120801
