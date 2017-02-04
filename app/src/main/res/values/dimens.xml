@@ -3,4 +3,21 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_minor">10dp</dimen>
+    <dimen name="spacing_major">15dp</dimen>
+    <dimen name="spacing_massive">24dp</dimen>
+
+    <dimen name="font_larger">22sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_normal">15sp</dimen>
+    <dimen name="font_small">13sp</dimen>
+    <dimen name="font_smaller">12sp</dimen>
+
+    <dimen name="corner_radius">4.0px</dimen>
+    <dimen name="corner_large">8.0px</dimen>
+    <dimen name="corner_larger">12.0px</dimen>
+
+    <dimen name="common_loading_progress_size">45dp</dimen>
 </resources>
