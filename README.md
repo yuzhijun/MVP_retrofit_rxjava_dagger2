@@ -15,3 +15,7 @@ REFERENCE:
 5.dagger 2使用:http://www.jianshu.com/p/c2feb21064bb
 
 6.当复仇者联盟遇上Dagger2、RxJava和Retrofit的巧妙结合:http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0601/2963.html
+
+7.Retrofit 2 — How to Upload Files to Server:https://futurestud.io/tutorials/retrofit-2-how-to-upload-files-to-server
+
+8.Retrofit2 完全解析 探索与okhttp之间的关系:http://blog.csdn.net/lmj623565791/article/details/51304204
