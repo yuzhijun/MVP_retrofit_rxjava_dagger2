@@ -3,6 +3,7 @@ package com.lenovohit.yuzhijun.ui.presenter;
 import com.lenovohit.yuzhijun.base.BaseSubscriber;
 import com.lenovohit.yuzhijun.model.Weather2;
 import com.lenovohit.yuzhijun.model.XMModel;
+import com.lenovohit.yuzhijun.model.event.SynchronizedEvent;
 import com.lenovohit.yuzhijun.util.RxBus;
 
 import java.util.ArrayList;
@@ -36,7 +37,9 @@ public class WeatherPresenter extends BasePresenter{
         switch (flag) {
             case 1:
                 Weather2 weather2 = (Weather2)o;
-                RxBus.getDefault().post(weather2);
+                List<Weather2> weather2s = new ArrayList<>();
+                weather2s.add(weather2);
+                RxBus.getDefault().post(new SynchronizedEvent<Weather2>(weather2s));
                 break;
             case 2:
                 XMModel xmModel = (XMModel) o;

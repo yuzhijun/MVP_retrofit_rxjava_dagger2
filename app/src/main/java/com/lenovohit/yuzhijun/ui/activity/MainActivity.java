@@ -10,6 +10,7 @@ import com.lenovohit.yuzhijun.inject.component.AppComponent;
 import com.lenovohit.yuzhijun.inject.component.DaggerActivityComponent;
 import com.lenovohit.yuzhijun.inject.module.ActivityModule;
 import com.lenovohit.yuzhijun.model.Weather2;
+import com.lenovohit.yuzhijun.model.event.SynchronizedEvent;
 import com.lenovohit.yuzhijun.ui.presenter.WeatherPresenter;
 import com.lenovohit.yuzhijun.util.RxBus;
 
@@ -67,17 +68,30 @@ public class MainActivity extends SimpleActivity{
     }
 
     public void getWeatherData(){
-        mSubscription = RxBus.getDefault().toObservable(Weather2.class)
-                .subscribe(new Action1<Weather2>() {
+//        mSubscription = RxBus.getDefault().toObservable(Weather2.class)
+//                .subscribe(new Action1<Weather2>() {
+//                    @Override
+//                    public void call(Weather2 weather2) {
+//                        cancelLoading();
+//                        tvShow.setText(weather2.getCountry());
+//                    }
+//                }, new Action1<Throwable>() {
+//                    @Override
+//                    public void call(Throwable throwable) {
+//                        cancelLoading();
+//                    }
+//                });
+        mSubscription = RxBus.getDefault().toObservable(SynchronizedEvent.class)
+                .subscribe(new Action1<SynchronizedEvent>() {
                     @Override
-                    public void call(Weather2 weather2) {
+                    public void call(SynchronizedEvent synchronizedEvent) {
                         cancelLoading();
-                        tvShow.setText(weather2.getCountry());
+                        tvShow.setText(((Weather2)synchronizedEvent.getDatas().get(0)).getCountry());
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        cancelLoading();
+
                     }
                 });
         showLoading(R.string.label_being_something);
