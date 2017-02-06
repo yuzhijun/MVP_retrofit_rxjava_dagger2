@@ -66,3 +66,9 @@ Materialize/Dematerialize, Timestamp/TimeInterval, ObserveOn/SubscribeOn/Subscri
 17.可能是东半球最全的RxJava使用场景小结：http://blog.csdn.net/theone10211024/article/details/50435325
 
 18.RxJava使用场景小结：http://blog.csdn.net/lzyzsd/article/details/50120801
+
+19.用RxJava实现事件总线(Event Bus)：http://www.jianshu.com/p/ca090f6e2fe2
+
+20.[深入RxBus]：支持Sticky事件：http://www.jianshu.com/p/71ab00a2677b
+
+21.[深入RxBus]：异常处理：http://www.jianshu.com/p/0493cc28a811
