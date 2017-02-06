@@ -3,7 +3,7 @@ package com.lenovohit.yuzhijun.ui.presenter;
 import com.lenovohit.yuzhijun.base.BaseSubscriber;
 import com.lenovohit.yuzhijun.model.Weather2;
 import com.lenovohit.yuzhijun.model.XMModel;
-import com.lenovohit.yuzhijun.ui.activity.MainActivity;
+import com.lenovohit.yuzhijun.util.RxBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +13,12 @@ import rx.Subscription;
 /**
  * Created by yuzhijun on 2016/4/29.
  */
-public class MainActivityPresenter extends BasePresenter{
+public class WeatherPresenter extends BasePresenter{
     private List<XMModel> xmModels = new ArrayList<>();
     private static final String IP = "63.223.108.42";
-    public MainActivity mMainActivity;
 
-    public MainActivityPresenter(MainActivity mainActivity){
-        this.mMainActivity = mainActivity;
+    public WeatherPresenter(){
+
     }
 
     public Subscription getWeatherData(){
@@ -37,7 +36,7 @@ public class MainActivityPresenter extends BasePresenter{
         switch (flag) {
             case 1:
                 Weather2 weather2 = (Weather2)o;
-                mMainActivity.setTvShow(weather2.getCountry());
+                RxBus.getDefault().post(weather2);
                 break;
             case 2:
                 XMModel xmModel = (XMModel) o;
@@ -52,7 +51,7 @@ public class MainActivityPresenter extends BasePresenter{
         super.onComplete(flag);
         switch (flag){
             case 2:
-                mMainActivity.setTvShow(xmModels.get(0).getBT());
+
                 break;
             default:
                 break;

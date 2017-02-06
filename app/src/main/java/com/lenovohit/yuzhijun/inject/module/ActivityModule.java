@@ -1,9 +1,7 @@
 package com.lenovohit.yuzhijun.inject.module;
 
-import android.app.Activity;
-
 import com.lenovohit.yuzhijun.ui.activity.MainActivity;
-import com.lenovohit.yuzhijun.ui.presenter.MainActivityPresenter;
+import com.lenovohit.yuzhijun.ui.presenter.WeatherPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,7 +25,7 @@ public class ActivityModule {
 
     @Provides
     @ActivityScope
-    MainActivityPresenter provideMainActivityPresenter(MainActivity activity){
-        return  new MainActivityPresenter(activity);
+    WeatherPresenter provideWeatherPresenter(){
+        return  new WeatherPresenter();
     }
 }

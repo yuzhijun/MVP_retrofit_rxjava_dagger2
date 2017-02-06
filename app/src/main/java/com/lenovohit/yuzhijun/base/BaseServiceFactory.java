@@ -33,7 +33,7 @@ public class BaseServiceFactory {
                 .subscribe(subscriber);
     }
 
-    public <T> Subscription getOverWeightDatas(Subscriber<T> subscriber,OverWeightFunc.IOverWeight<T> overWeight){
+    public <T> Subscription getOverWeightDatas(Subscriber<T> subscriber, OverWeightFunc.IOverWeight<T> overWeight){
         OverWeightFunc<T> overWeightFunc = new OverWeightFunc<>();
         overWeightFunc.registerIOverWeight(overWeight);
         return Observable.defer(overWeightFunc)

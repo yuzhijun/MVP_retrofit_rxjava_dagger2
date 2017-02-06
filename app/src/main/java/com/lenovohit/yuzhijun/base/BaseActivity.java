@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.lenovohit.yuzhijun.inject.component.AppComponent;
 import com.lenovohit.yuzhijun.view.LoadingDialog;
 
+import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -17,6 +18,7 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class BaseActivity extends AppCompatActivity {
     protected CompositeSubscription mCompositeSubscription
             = new CompositeSubscription();
+    protected Subscription mSubscription;
 
     private LoadingDialog mLoading;
 
@@ -71,5 +73,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mCompositeSubscription.unsubscribe();
+        if (mSubscription != null){
+            if (!mSubscription.isUnsubscribed()){
+                mSubscription.unsubscribe();
+            }
+        }
     }
 }

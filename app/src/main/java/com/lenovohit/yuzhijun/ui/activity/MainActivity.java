@@ -9,12 +9,15 @@ import com.lenovohit.yuzhijun.R;
 import com.lenovohit.yuzhijun.inject.component.AppComponent;
 import com.lenovohit.yuzhijun.inject.component.DaggerActivityComponent;
 import com.lenovohit.yuzhijun.inject.module.ActivityModule;
-import com.lenovohit.yuzhijun.ui.presenter.MainActivityPresenter;
+import com.lenovohit.yuzhijun.model.Weather2;
+import com.lenovohit.yuzhijun.ui.presenter.WeatherPresenter;
+import com.lenovohit.yuzhijun.util.RxBus;
 
 import javax.inject.Inject;
 
 import butterknife.Bind;
 import rx.Subscription;
+import rx.functions.Action1;
 
 /**
  * Created by yuzhijun on 2016/4/28.
@@ -28,7 +31,7 @@ public class MainActivity extends SimpleActivity{
     Button btnSwitch;
 
     @Inject
-    MainActivityPresenter mainActivityPresenter;
+    WeatherPresenter mWeatherPresenter;
 
     @Override
     protected int getContentView() {
@@ -40,7 +43,6 @@ public class MainActivity extends SimpleActivity{
         super.initView();
 
         getWeatherData();
-//        getXMList();
     }
 
     @Override
@@ -64,19 +66,22 @@ public class MainActivity extends SimpleActivity{
                 .inject(this);
     }
 
-    public void setTvShow(String country){
-        cancelLoading();
-        tvShow.setText(country);
-    }
-
     public void getWeatherData(){
+        mSubscription = RxBus.getDefault().toObservable(Weather2.class)
+                .subscribe(new Action1<Weather2>() {
+                    @Override
+                    public void call(Weather2 weather2) {
+                        cancelLoading();
+                        tvShow.setText(weather2.getCountry());
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        cancelLoading();
+                    }
+                });
         showLoading(R.string.label_being_something);
-        Subscription subscription =  mainActivityPresenter.getWeatherData();
-        mCompositeSubscription.add(subscription);
-    }
-
-    public void getXMList(){
-        Subscription subscription = mainActivityPresenter.getXMList();
+        Subscription subscription =  mWeatherPresenter.getWeatherData();
         mCompositeSubscription.add(subscription);
     }
 }
