@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt' // 注释处理
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "24.0.3"
 
     defaultConfig {
         applicationId "com.lenovohit.yuzhijun"
-        minSdkVersion 17
-        targetSdkVersion 23
+        minSdkVersion 15
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -26,29 +26,29 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.android.support:design:23.2.0'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:design:25.1.0'
     compile 'io.reactivex:rxjava:1.2.4'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+    compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.jakewharton:butterknife:7.0.1'
-
     //dagger2
-    compile 'com.google.dagger:dagger:2.0.2' // dagger2
-    compile 'com.google.dagger:dagger-compiler:2.0.2' // dagger2
-    provided 'javax.annotation:jsr250-api:1.0' // Java标注
+    compile 'com.google.dagger:dagger:2.0.2'
+    // dagger2
+    compile 'com.google.dagger:dagger-compiler:2.0.2'
+    // Java标注
+    provided 'javax.annotation:jsr250-api:1.0'
 
     //内存泄漏
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
     // 进度条
     compile 'com.github.castorflex.smoothprogressbar:library-circular:1.2.0'
     //
