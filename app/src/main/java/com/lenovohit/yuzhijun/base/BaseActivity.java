@@ -48,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         cancelLoading();
         if (mLoading == null) {
             mLoading = new LoadingDialog(this);
-            mLoading.setCancelable(false);
+            mLoading.setCancelable(true);
             mLoading.setCanceledOnTouchOutside(false);
         }
         mLoading.setTitle(text);
@@ -71,7 +71,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-
+                        cancelLoading();
                     }
                 });
         return subscription;
@@ -96,6 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        finish();
         mCompositeSubscription.unsubscribe();
         if (mSubscriptions != null && mSubscriptions.size() > 0){
             for (Subscription subscription : mSubscriptions){

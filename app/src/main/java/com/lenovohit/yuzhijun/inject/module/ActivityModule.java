@@ -1,6 +1,7 @@
 package com.lenovohit.yuzhijun.inject.module;
 
-import com.lenovohit.yuzhijun.ui.activity.MainActivity;
+import android.content.Context;
+
 import com.lenovohit.yuzhijun.ui.presenter.WeatherPresenter;
 
 import dagger.Module;
@@ -11,16 +12,10 @@ import dagger.Provides;
  */
 @Module
 public class ActivityModule {
-    private final MainActivity activity;
+    private final Context mContext;
 
-    public ActivityModule(MainActivity activity){
-        this.activity = activity;
-    }
-
-    @Provides
-    @ActivityScope
-    MainActivity provideAcitivity(){
-        return this.activity;
+    public ActivityModule(Context activity){
+        this.mContext = activity;
     }
 
     @Provides
