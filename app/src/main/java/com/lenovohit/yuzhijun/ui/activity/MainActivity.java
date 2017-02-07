@@ -124,4 +124,9 @@ public class MainActivity extends SimpleActivity{
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mWeatherPresenter = null;
+    }
 }

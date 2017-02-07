@@ -81,4 +81,9 @@ public class SecondActivity extends SimpleActivity {
                 .inject(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mWeatherPresenter = null;
+    }
 }

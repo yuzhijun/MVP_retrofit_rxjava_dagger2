@@ -29,6 +29,9 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mBaseApplication = this;
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
         refWatcher = LeakCanary.install(this);
         setupGraph();
     }
