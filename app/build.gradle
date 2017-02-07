@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.medical.lenovo.lastframework"
+        applicationId "com.lenovohit.yuzhijun"
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
@@ -50,4 +50,6 @@ dependencies {
 
     // 进度条
     compile 'com.github.castorflex.smoothprogressbar:library-circular:1.2.0'
+    //
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.9.7'
 }

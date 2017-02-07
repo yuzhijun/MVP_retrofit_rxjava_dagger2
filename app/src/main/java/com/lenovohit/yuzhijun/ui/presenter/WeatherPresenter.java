@@ -39,6 +39,7 @@ public class WeatherPresenter extends BasePresenter{
                 Weather2 weather2 = (Weather2)o;
                 List<Weather2> weather2s = new ArrayList<>();
                 weather2s.add(weather2);
+                RxBus.getDefault().post(weather2);
                 RxBus.getDefault().post(new SynchronizedEvent<Weather2>(weather2s));
                 break;
             case 2:

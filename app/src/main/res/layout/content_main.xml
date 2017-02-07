@@ -17,12 +17,22 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvShow"
+        android:layout_alignEnd="@+id/tvShow"
+        android:layout_marginTop="79dp"
+        android:id="@+id/tvWeatherShow"/>
+
     <Button
         android:id="@+id/btnSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvShow"
         android:text="跳转到下一个页面"
         android:textColor="@android:color/black"
-        android:layout_marginTop="30dp"/>
+        android:layout_below="@+id/tvWeatherShow"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="59dp"/>
 </RelativeLayout>
