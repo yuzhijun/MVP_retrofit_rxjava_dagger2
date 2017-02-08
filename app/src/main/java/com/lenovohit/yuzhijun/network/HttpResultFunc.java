@@ -1,7 +1,6 @@
 package com.lenovohit.yuzhijun.network;
 
 
-
 import com.lenovohit.yuzhijun.model.HttpResult;
 
 import rx.functions.Func1;
@@ -16,7 +15,6 @@ public class HttpResultFunc<T> implements Func1<HttpResult<T>, T> {
 //        if (httpResult.getCode() != 0) {
 //            throw new ApiException(httpResult.getCode());
 //        }
-//        return httpResult.getData();
         return httpResult.getData();
     }
 }

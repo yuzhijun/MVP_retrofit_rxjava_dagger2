@@ -26,11 +26,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private LoadingDialog mLoading;
 
+    public static BaseActivity currentActivity;
+
     protected List<Subscription> mSubscriptions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        currentActivity = this;
         setupComponent(BaseApplication.get(this).component());
         beforeContentView();
         setContentView(getContentView());
@@ -40,11 +43,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
     }
 
-    protected final void showLoading(@StringRes int textResId) {
+    public final void showLoading(@StringRes int textResId) {
         showLoading(getString(textResId));
     }
 
-    protected final void showLoading(String text) {
+    public final void showLoading(String text) {
         cancelLoading();
         if (mLoading == null) {
             mLoading = new LoadingDialog(this);
@@ -55,7 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mLoading.show();
     }
 
-    protected final void cancelLoading() {
+    public final void cancelLoading() {
         if (mLoading != null && mLoading.isShowing()) {
             mLoading.dismiss();
         }
@@ -66,7 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .subscribe(new Action1<T>() {
                     @Override
                     public void call(T t) {
-                        rxbusCallBack(t);
+                            rxbusCallBack(t);
                     }
                 }, new Action1<Throwable>() {
                     @Override
