@@ -3,6 +3,8 @@ package com.lenovohit.yuzhijun.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lenovohit.yuzhijun.inject.component.AppComponent;
@@ -95,6 +97,65 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void setupComponent(AppComponent appComponent);
 
     protected abstract <T> void rxbusCallBack(T t);
+
+    //fragment管理
+    public BaseFragment addFragment(BaseFragment fragment) {
+        List<BaseFragment> fragments = new ArrayList<BaseFragment>(1);
+        fragments.add(fragment);
+
+        List<BaseFragment> fragments2 = addFragments(fragments);
+        return fragments2.get(0);
+    }
+
+    public List<BaseFragment> addFragments(List<BaseFragment> fragments) {
+        List<BaseFragment> fragments2 = new ArrayList<BaseFragment>(fragments.size());
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+
+        boolean commit = false;
+        for (int i = 0; i < fragments.size(); i++) {
+            // install
+            BaseFragment fragment = fragments.get(i);
+            int id = fragment.getContainerId();
+
+            // exists
+            BaseFragment fragment2 = (BaseFragment) fm.findFragmentById(id);
+            if (fragment2 == null) {
+                fragment2 = fragment;
+                transaction.add(id, fragment);
+                commit = true;
+            }
+            fragments2.add(i, fragment2);
+        }
+
+        if (commit) {
+            try {
+                transaction.commitAllowingStateLoss();
+            } catch (Exception e) {
+            }
+        }
+        return fragments2;
+    }
+
+    public BaseFragment switchContent(BaseFragment fragment) {
+        return switchContent(fragment, false);
+    }
+
+    protected BaseFragment switchContent(BaseFragment fragment, boolean needAddToBackStack) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(fragment.getContainerId(), fragment);
+        if (needAddToBackStack) {
+            fragmentTransaction.addToBackStack(fragment.getClass().getName());
+        }
+        try {
+            fragmentTransaction.commitAllowingStateLoss();
+        } catch (Exception e) {
+
+        }
+        return fragment;
+    }
 
     @Override
     protected void onDestroy() {
