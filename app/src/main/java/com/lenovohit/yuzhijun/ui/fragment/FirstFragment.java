@@ -37,6 +37,11 @@ public class FirstFragment extends BaseFragment {
     }
 
     @Override
+    protected <T> void rxbusCallBack(T t) {
+
+    }
+
+    @Override
     protected void initData(Bundle arguments) {
         if (arguments != null){
             msg = (String) arguments.getSerializable(MSG);
