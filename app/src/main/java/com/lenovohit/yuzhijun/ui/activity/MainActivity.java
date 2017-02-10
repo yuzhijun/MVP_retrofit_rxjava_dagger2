@@ -45,6 +45,7 @@ public class MainActivity extends SimpleActivity{
         super.initView();
         setContentView(R.layout.activity_main);
         setToolBarTitle("主页");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         setIconToolBarRight(R.mipmap.ic_launcher, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
