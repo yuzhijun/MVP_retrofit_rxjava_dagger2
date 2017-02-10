@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tvShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/btnSwitch"
+        android:layout_alignEnd="@+id/btnSwitch"/>
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvShow"
-        android:layout_alignEnd="@+id/tvShow"
+        android:layout_alignRight="@+id/tvShow"
         android:layout_marginTop="79dp"
-        android:id="@+id/tvWeatherShow"/>
+        android:id="@+id/tvWeatherShow"
+        android:layout_alignLeft="@+id/tvShow"
+        android:layout_alignStart="@+id/tvShow"/>
 
     <Button
         android:id="@+id/btnSwitch"
@@ -32,7 +30,10 @@
         android:layout_height="wrap_content"
         android:text="跳转到下一个页面"
         android:textColor="@android:color/black"
+        android:layout_marginTop="59dp"
         android:layout_below="@+id/tvWeatherShow"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="59dp"/>
+        android:layout_marginLeft="68dp"
+        android:layout_marginStart="68dp"/>
 </RelativeLayout>

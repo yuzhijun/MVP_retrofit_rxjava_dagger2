@@ -4,8 +4,6 @@ import android.content.Intent;
 
 import com.lenovohit.yuzhijun.base.BaseActivity;
 
-import butterknife.ButterKnife;
-
 /**
  * 空实现，为了适配继承类，因为有的方法不需要实现
  * 子类根据需要进行实现
@@ -20,7 +18,7 @@ public abstract class SimpleActivity extends BaseActivity{
 
     @Override
     protected void initView() {
-        ButterKnife.bind(this);
+
     }
 
     @Override
@@ -41,6 +39,5 @@ public abstract class SimpleActivity extends BaseActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
     }
 }

@@ -32,15 +32,18 @@ public class SecondActivity extends SimpleActivity {
     @Inject
     WeatherPresenter mWeatherPresenter;
 
-    @Override
-    protected int getContentView() {
-        return R.layout.content_main;
-    }
 
     @Override
     protected void initView() {
         super.initView();
+        setContentView(R.layout.content_main);
+        setToolBarTitle("子页面");
+        setStrToolBarRight("更多", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         getWeatherData();
     }
 

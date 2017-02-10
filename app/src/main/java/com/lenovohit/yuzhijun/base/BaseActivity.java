@@ -2,18 +2,30 @@ package com.lenovohit.yuzhijun.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.lenovohit.yuzhijun.R;
 import com.lenovohit.yuzhijun.inject.component.AppComponent;
+import com.lenovohit.yuzhijun.util.DensityUtil;
 import com.lenovohit.yuzhijun.util.RxBus;
 import com.lenovohit.yuzhijun.view.LoadingDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
@@ -27,10 +39,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             = new CompositeSubscription();
 
     private LoadingDialog mLoading;
-
     public static BaseActivity currentActivity;
-
     protected List<Subscription> mSubscriptions = new ArrayList<>();
+    private Toolbar mToolbar;
+    private TextView toolbar_title;
+    private Button btnRight;
+    private LinearLayout content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +52,64 @@ public abstract class BaseActivity extends AppCompatActivity {
         currentActivity = this;
         setupComponent(BaseApplication.get(this).component());
         beforeContentView();
-        setContentView(getContentView());
         obtainParam(getIntent());
+        initBaseView();
         initView();
+        ButterKnife.bind(this);
         initListener();
         initData();
+    }
+
+    private void initBaseView(){
+        super.setContentView(R.layout.layout_base_activity);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar_title = (TextView) findViewById(R.id.toolbar_title);
+        btnRight = (Button) findViewById(R.id.btnRight);
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
+        getSupportActionBar().setHomeButtonEnabled(true);//设置返回键可用
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        content = (LinearLayout) findViewById(R.id.content);
+    }
+
+    protected void isShowToolBar(boolean isShow){
+        mToolbar.setVisibility(isShow ? View.VISIBLE : View.GONE);
+    }
+
+    protected void setToolBarTitle(String title){
+        toolbar_title.setText(title == null || "".equalsIgnoreCase(title) ? "" : title);
+    }
+
+    protected void setStrToolBarRight(String str,View.OnClickListener onClickListener){
+        if (str != null && !"".equalsIgnoreCase(str)){
+            btnRight.setVisibility(View.VISIBLE);
+            btnRight.setText(str);
+            btnRight.setOnClickListener(onClickListener);
+        }
+    }
+
+    protected void setIconToolBarRight(@DrawableRes int icon, View.OnClickListener onClickListener){
+        btnRight.setVisibility(View.VISIBLE);
+        btnRight.setBackgroundResource(icon);
+        ViewGroup.LayoutParams linearParams = btnRight.getLayoutParams();
+        linearParams.height = DensityUtil.dip2px(this,26);
+        linearParams.width = DensityUtil.dip2px(this,26);
+        btnRight.setLayoutParams(linearParams);
+        btnRight.setOnClickListener(onClickListener);
+    }
+
+    public void setContentView(@LayoutRes int layoutResID){
+        getLayoutInflater().inflate(layoutResID,this.content);
     }
 
     public final void showLoading(@StringRes int textResId) {
@@ -85,8 +152,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void obtainParam(Intent intent);
 
     protected abstract void beforeContentView();
-
-    protected abstract int getContentView();
 
     protected abstract void initView();
 
@@ -161,6 +226,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         finish();
+        ButterKnife.unbind(this);
         mCompositeSubscription.unsubscribe();
         if (mSubscriptions != null && mSubscriptions.size() > 0){
             for (Subscription subscription : mSubscriptions){

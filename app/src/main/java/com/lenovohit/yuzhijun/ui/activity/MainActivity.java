@@ -41,14 +41,16 @@ public class MainActivity extends SimpleActivity{
 
 
     @Override
-    protected int getContentView() {
-        return R.layout.activity_main;
-    }
-
-    @Override
     protected void initView() {
         super.initView();
+        setContentView(R.layout.activity_main);
+        setToolBarTitle("主页");
+        setIconToolBarRight(R.mipmap.ic_launcher, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         getWeatherData();
     }
 

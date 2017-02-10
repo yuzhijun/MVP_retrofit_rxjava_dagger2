@@ -38,8 +38,8 @@ public abstract class BasePresenter implements SubscriberListener{
 
     @Override
     public void onError(Throwable e) {
-        BaseActivity.currentActivity.cancelLoading();
         if (e instanceof ApiException){
+            BaseActivity.currentActivity.cancelLoading();
             ViewUtil.showToast(((ApiException)e).getMessage(),false);
         }
     }
