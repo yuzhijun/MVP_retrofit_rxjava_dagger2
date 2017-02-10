@@ -3,7 +3,6 @@ package com.lenovohit.yuzhijun.ui.activity;
 import android.content.Intent;
 
 import com.lenovohit.yuzhijun.base.BaseActivity;
-import com.lenovohit.yuzhijun.network.SubscriberListener;
 
 import butterknife.ButterKnife;
 
@@ -37,5 +36,11 @@ public abstract class SimpleActivity extends BaseActivity{
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 }

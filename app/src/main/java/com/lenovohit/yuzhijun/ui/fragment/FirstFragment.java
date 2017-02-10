@@ -47,4 +47,9 @@ public class FirstFragment extends BaseFragment {
             msg = (String) arguments.getSerializable(MSG);
         }
     }
+
+    @Override
+    protected void loadData() {
+
+    }
 }

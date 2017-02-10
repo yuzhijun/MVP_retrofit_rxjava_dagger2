@@ -39,6 +39,8 @@ public abstract class BaseFragment extends Fragment {
     private boolean isVisible;
     //是否第一次加载
     private boolean isFirst=true;
+    //是否开启懒加载
+    private boolean isOpenLazyLoad = false;
     //根view
     protected View rootView;
     //要动态添加到的地址id
@@ -63,6 +65,8 @@ public abstract class BaseFragment extends Fragment {
      * */
     protected abstract void initData(Bundle arguments);
 
+    protected abstract void loadData();
+
     protected abstract void initListener();
 
     protected abstract <T> void rxbusCallBack(T t);
@@ -81,9 +85,47 @@ public abstract class BaseFragment extends Fragment {
         ButterKnife.bind(this,rootView);
         initData(getArguments());
         initView(rootView,savedInstanceState);
-        mIsPrepare = true;
         initListener();
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mIsPrepare = true;
+        lazyLoadData();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isOpenLazyLoad){
+            if(getUserVisibleHint()) {
+                isVisible = true;
+                lazyLoadData();
+            } else {
+                isVisible = false;
+                onInvisible();
+            }
+        }
+    }
+
+    protected void lazyLoadData(){
+        if (isOpenLazyLoad){
+            if (!mIsPrepare || !isVisible || !isFirst) {
+                return;
+            }
+        }else{
+            if (!mIsPrepare){
+                return;
+            }
+        }
+        loadData();
+        isFirst = false;
+    }
+
+    protected void onInvisible(){
+
     }
 
     protected <T extends View> T findViewById(int resId) {
@@ -137,10 +179,18 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    public boolean isOpenLazyLoad() {
+        return isOpenLazyLoad;
+    }
+
+    public void setOpenLazyLoad(boolean openLazyLoad) {
+        isOpenLazyLoad = openLazyLoad;
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mIsPrepare = false;
+        ButterKnife.unbind(this);
         mCompositeSubscription.unsubscribe();
         if (mSubscriptions != null && mSubscriptions.size() > 0){
             for (Subscription subscription : mSubscriptions){
