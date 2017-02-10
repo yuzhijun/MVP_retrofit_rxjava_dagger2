@@ -133,6 +133,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected void start2Activity(Class<?> activity){
+        Intent intent = new Intent(this,activity);
+        this.startActivity(intent);
+    }
+
     protected final  <T> Subscription registerEventCallBack(Class<T> event){
          Subscription subscription = RxBus.getDefault().toObservable(event)
                 .subscribe(new Action1<T>() {

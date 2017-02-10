@@ -1,6 +1,5 @@
 package com.lenovohit.yuzhijun.ui.activity;
 
-import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -61,8 +60,7 @@ public class MainActivity extends SimpleActivity{
         btnSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-                startActivity(intent);
+                start2Activity(SecondActivity.class);
             }
         });
     }
