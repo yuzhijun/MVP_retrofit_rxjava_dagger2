@@ -45,6 +45,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     private TextView toolbar_title;
     private Button btnRight;
     private LinearLayout content;
+    //判断是否在activity不可见的时候取消订阅,默认取消
+    private boolean unSubscribe = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,6 +227,28 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         }
         return fragment;
+    }
+
+    public boolean isUnSubscribe() {
+        return unSubscribe;
+    }
+
+    public void setUnSubscribe(boolean unSubscribe) {
+        this.unSubscribe = unSubscribe;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (unSubscribe){
+            if (mSubscriptions != null && mSubscriptions.size() > 0){
+                for (Subscription subscription : mSubscriptions){
+                    if (!subscription.isUnsubscribed()){
+                        subscription.unsubscribe();
+                    }
+                }
+            }
+        }
     }
 
     @Override
