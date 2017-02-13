@@ -11,6 +11,8 @@ import com.lenovohit.yuzhijun.network.ServiceFactory;
 import com.lenovohit.yuzhijun.network.SubscriberListener;
 import com.lenovohit.yuzhijun.util.ViewUtil;
 
+import java.net.SocketTimeoutException;
+
 import javax.inject.Inject;
 
 /**
@@ -41,6 +43,9 @@ public abstract class BasePresenter implements SubscriberListener{
         if (e instanceof ApiException){
             BaseActivity.currentActivity.cancelLoading();
             ViewUtil.showToast(((ApiException)e).getMessage(),false);
+        }else if(e instanceof SocketTimeoutException){
+            BaseActivity.currentActivity.cancelLoading();
+            ViewUtil.showToast("网络访问超时",false);
         }
     }
 

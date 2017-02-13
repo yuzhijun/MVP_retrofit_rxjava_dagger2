@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiServiceModule {
 
     private static final String BASE_URL =  "http://ip.taobao.com/";//"http://demo.xizhang.com/testappwebapi/api/";
-    private static final int DEFAULT_TIMEOUT = 5;
+    private static final int DEFAULT_TIMEOUT = 8;
     private Interceptor cacheInterceptor = new OfflineCacheControlInterceptor();
 
     @Provides
