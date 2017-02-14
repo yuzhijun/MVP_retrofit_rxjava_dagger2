@@ -35,7 +35,7 @@ REFERENCE:
 
 15.Dagger2 (三) 总结篇:http://www.cnblogs.com/pedro-neer/p/5309841.html
 
-16.ReactiveX中文翻译文档：操作符介绍：https://mcxiaoke.gitbooks.io/rxdocs/content/
+16.ReactiveX中文翻译文档：操作符介绍：http://wiki.jikexueyuan.com/project/rx-docs/operators/Creating-Observables.html
 
 大纲之操作符分类
 
