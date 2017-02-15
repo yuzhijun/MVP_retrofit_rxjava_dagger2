@@ -25,6 +25,7 @@ REFERENCE:
 
 10.dagger2 让你爱不释手：基础依赖注入框架篇:http://android.jobbole.com/82694/#comment-91844
 
+
 11.dagger2 让你爱不释手：重点概念讲解、融合篇:http://android.jobbole.com/82704/
 
 12.dagger2 让你爱不释手：终结篇:http://android.jobbole.com/82705/
@@ -72,3 +73,5 @@ Materialize/Dematerialize, Timestamp/TimeInterval, ObserveOn/SubscribeOn/Subscri
 20.[深入RxBus]：支持Sticky事件：http://www.jianshu.com/p/71ab00a2677b
 
 21.[深入RxBus]：异常处理：http://www.jianshu.com/p/0493cc28a811
+
+22.rxjava操作符：http://blog.csdn.net/johnny901114/article/details/52597643
